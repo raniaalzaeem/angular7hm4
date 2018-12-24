@@ -1,0 +1,85 @@
+<h1 style="text-align: center">
+  products page 
+</h1>
+
+
+<div>
+
+    product id : <input type="text" name="id" [(ngModel)]='selectedObjforedit.id' /> <br/> <br/>
+    product name : <input type="text" name="name" [(ngModel)]='selectedObjforedit.name' /> <br/> <br/>
+    product price : <input type="number" name="price" [(ngModel)]='selectedObjforedit.price' /> <br/> <br/>
+    product quantity: <input type="number" name="quantity" [(ngModel)]='selectedObjforedit.quantity' /> <br/> <br/>
+
+    <div>
+      <strong [class.redColor]="doit" id="Msg"></strong>
+    </div>
+
+    <button type="submit" (click)="addproduct()" [class.btnMargin]="doit" *ngIf="isActiveEditBtn?'hidden':''"> Add Products </button>
+    <button type="submit" (click)="editproductbtn()" [class.btnMargin]="doit" *ngIf="isActiveEditBtn?'':'hidden'"> Edit Products </button>
+    <button type="submit" (click)="printproductData()" [class.btnMargin]="doit"> Display Products Data </button>
+
+</div>
+
+<div *ngIf="isActive?'':'hidden'">
+    <h1 style="text-align: center">
+        All products Details 
+      </h1>
+  <table [style.style-table]="doit"  >
+    <thead>
+      <tr>
+        <td width="5%">  #</td>
+        <td width="10%">ID</td>
+        <td width="25%">Name</td>
+        <td width="15%">Price</td>
+        <td width="15%">quantity</td>
+        <td width="15%">edit</td>
+        <td width="15%">delete</td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let obj of allproducts ; index as i ;' (click) ='showItem(obj.id)'>
+        <td> {{i}}</td>
+        <td>{{obj.id}}</td>
+        <td>{{obj.name}}</td>
+        <td>{{obj.price}}</td>
+        <td>{{obj.quantity}}</td>
+        <td> <button type="submit" (click) ='editproduct(obj.id)'> edit </button></td>
+        <td> <button  type="submit"  (click) ='deleteproduct(obj.id)'> delete </button></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+</div>
+
+
+
+<div *ngIf="isActive?'':'hidden'">
+    <h1 style="text-align: center">
+        Selected Product Details 
+      </h1>
+<table [style.style-table]="doit"  >
+  <thead>
+    <tr>
+      <td width="5%">  #</td>
+      <td width="10%">ID</td>
+      <td width="25%">Name</td>
+      <td width="15%">Price</td>
+      <td width="15%">quantity</td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> {{selectedObj.id}}</td>
+      <td>{{selectedObj.id}}</td>
+      <td>{{selectedObj.name}}</td>
+      <td>{{selectedObj.price}}</td>
+      <td>{{selectedObj.quantity}}</td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
